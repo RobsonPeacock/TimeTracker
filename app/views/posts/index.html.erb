@@ -17,22 +17,5 @@
       </th>
     </tr>
   </thead>
-  <% @posts.each do |post| %>
-    <tbody>
-      <tr>
-        <td>
-          <%= post.id %>
-        </td>
-        <td>
-          <%= post.date %>
-        </td>
-        <td>
-          <%= truncate(post.rationale) %>
-        </td>
-        <td>
-          <%= post.user.first_name %>
-        </td>
-      </tr>
-    </tbody>
-  <% end %>
+  <%= render @posts %>
 </table>
