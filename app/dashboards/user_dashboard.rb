@@ -2,32 +2,29 @@ require "administrate/base_dashboard"
 
 class UserDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
-    posts: Field::HasMany,
-    id: Field::Number,
+    posts: Field::HasMany.with_options(searchable: false),
+    id: Field::Number.with_options(searchable: false),
     email: Field::String,
-    password: Field::String,
-    sign_in_count: Field::Number,
-    current_sign_in_at: Field::DateTime,
-    last_sign_in_at: Field::DateTime,
-    current_sign_in_ip: Field::String.with_options(searchable: false),
-    last_sign_in_ip: Field::String.with_options(searchable: false),
-    first_name: Field::String,
-    last_name: Field::String,
-    created_at: Field::DateTime,
-    updated_at: Field::DateTime,
-    type: Field::String,
+    password: Field::Password.with_options(searchable: false),
+    password_confirmation: Field::Password.with_options(searchable: false),
+    sign_in_count: Field::Number.with_options(searchable: false),
+    current_sign_in_at: Field::DateTime.with_options(searchable: false),
+    last_sign_in_at: Field::DateTime.with_options(searchable: false),
+    first_name: Field::String.with_options(searchable: false),
+    last_name: Field::String.with_options(searchable: false),
+    created_at: Field::DateTime.with_options(searchable: false),
+    updated_at: Field::DateTime.with_options(searchable: false),
+    type: Field::String.with_options(searchable: false),
   }.freeze
 
   COLLECTION_ATTRIBUTES = %i[
     posts
-    id
     email
     type
   ].freeze
 
   SHOW_PAGE_ATTRIBUTES = %i[
     posts
-    id
     email
     first_name
     last_name
@@ -39,6 +36,7 @@ class UserDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     email
     password
+    password_confirmation
     first_name
     last_name
   ].freeze
