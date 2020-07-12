@@ -14,8 +14,6 @@
  *= require_self
  */
 
-@import "bourbon/bourbon"
-
 .custom-nav {
   margin-top: 15px;
 }
