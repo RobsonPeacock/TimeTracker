@@ -22,6 +22,18 @@ describe 'navigate' do
       visit posts_path
       expect(page).to have_content(/Rationale|Content/)
     end
+
+    it 'only has posts that were created by the current user' do
+      post1 = FactoryBot.build_stubbed(:post)
+      post2 = FactoryBot.build_stubbed(:second_post)
+
+      other_user = User.create(first_name: 'Non', last_name: 'Authorised', email: 'nonauth@test.com', password: 'Password1', password_confirmation: 'Password1')
+      post_from_other_user = Post.create(date: Date.today, rationale: "This post shouldn't be seen", user_id: other_user.id)
+
+      visit posts_path
+
+      expect(page).not_to have_content(/This post shouldn't be seen/)
+    end
   end
 
   describe 'new' do
@@ -36,6 +48,8 @@ describe 'navigate' do
   describe 'delete' do
     it 'can be deleted' do
       @post = FactoryBot.create(:post)
+      ## TODO: refactor
+      @post.update(user_id: @user.id)
       visit posts_path
 
       click_link("delete_post_#{@post.id}_from_index")
