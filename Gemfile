@@ -39,3 +39,4 @@ gem 'pundit', '~> 2.1'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 gem 'twilio-ruby', '~> 5.39', '>= 5.39.2'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.6', :groups => [:development, :test]
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
