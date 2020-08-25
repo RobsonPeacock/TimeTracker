@@ -10,7 +10,19 @@
     <%= render partial: 'pending_approval', locals: { pending_approvals: @pending_approvals } %>
   </div>
 
-  <div class="pending-homepage">
-    <p>asdf</p>
+  <div class="pending-homepage row">
+    <div class="col-md-12">
+      <h2>Confirmation Log</h2>
+    </div>
+
+    <hr>
+
+    <%= render partial: 'confirmation_log', locals: { recent_audit_logs: @recent_audit_logs } %>
+
+    <hr>
+
+    <div class="col-md-12">
+      <%= link_to 'View All Audit Logs', audit_logs_path, class: 'btn btn-primary float-right' %>
+    </div>
   </div>
 </div>
