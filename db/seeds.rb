@@ -1,4 +1,4 @@
-@user = User.create!(
+@employee = Employee.create!(
                     email: "test@test.com",
                     password: "Password1",
                     password_confirmation: "Password1",
@@ -20,9 +20,9 @@ AdminUser.create!(
 
 puts '1 Admin User created'
 
-AuditLog.create!(user_id: @user.id, status: 0, start_date: (Date.today - 6.days))
-AuditLog.create!(user_id: @user.id, status: 0, start_date: (Date.today - 13.days))
-AuditLog.create!(user_id: @user.id, status: 0, start_date: (Date.today - 20.days))
+AuditLog.create!(user_id: @employee.id, status: 0, start_date: (Date.today - 6.days))
+AuditLog.create!(user_id: @employee.id, status: 0, start_date: (Date.today - 13.days))
+AuditLog.create!(user_id: @employee.id, status: 0, start_date: (Date.today - 20.days))
 
 puts '3 Audit Logs have been created'
 
@@ -41,7 +41,7 @@ puts '3 Audit Logs have been created'
                Aenean a tellus arcu. Ut odio elit, gravida a ligula id,
                posuere laoreet enim. Proin elementum ornare interdum. Lorem
                ipsum dolor sit amet, consectetur adipiscing elit.",
-               user_id: @user.id,
+               user_id: @employee.id,
                overtime_request: 2.5
               )
 end
