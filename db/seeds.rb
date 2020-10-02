@@ -4,7 +4,9 @@
                     password_confirmation: "Password1",
                     first_name: "Test",
                     last_name: "User",
-                    phone: "1543624319"
+                    phone: "1543624319",
+                    ssn: 1234,
+                    company: "Example Company"
                   )
 
 puts '1 User created'
@@ -15,7 +17,9 @@ AdminUser.create!(
                  password_confirmation: "Password1",
                  first_name: "Admin",
                  last_name: "User",
-                 phone: "1543624319"
+                 phone: "1543624319",
+                 ssn: 1235,
+                 company: "Example Company"
                 )
 
 puts '1 Admin User created'

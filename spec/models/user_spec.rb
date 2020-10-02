@@ -39,6 +39,26 @@ RSpec.describe User, type: :model do
       @user.phone = '12345678901'
       expect(@user).to_not be_valid
     end
+
+    it "requires the ssn attr" do
+      @user.ssn = nil
+      expect(@user).to_not be_valid
+    end
+
+    it "requires a company" do
+      @user.company = nil
+      expect(@user).to_not be_valid
+    end
+
+    it "requires the ssn attr to only contain characters" do
+      @user.ssn = 'mygreatstr'
+      expect(@user).to_not be_valid
+    end
+
+    it "requires the ssn attr to only have 10 characters" do
+      @user.ssn = '12345'
+      expect(@user).to_not be_valid
+    end
   end
 
   describe "custom name methods" do
@@ -55,7 +75,7 @@ RSpec.describe User, type: :model do
 
       StaffMember.create!(user_id: admin.id, staff_member_id: employee_1.id)
       StaffMember.create!(user_id: admin.id, staff_member_id: employee_2.id)
-      
+
       expect(admin.staff_members.count).to eq(2)
     end
   end

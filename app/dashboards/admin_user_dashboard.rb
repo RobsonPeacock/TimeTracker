@@ -16,16 +16,21 @@ class AdminUserDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime.with_options(searchable: false),
     type: Field::String.with_options(searchable: false),
     phone: Field::String.with_options(searchable: false),
+    ssn: Field::Number.with_options(searchable: true),
+    company: Field::String.with_options(searchable: false),
   }.freeze
 
   COLLECTION_ATTRIBUTES = %i[
     posts
     email
     type
+    ssn
   ].freeze
 
   SHOW_PAGE_ATTRIBUTES = %i[
     posts
+    ssn
+    company
     email
     phone
     first_name
@@ -36,11 +41,13 @@ class AdminUserDashboard < Administrate::BaseDashboard
   ].freeze
 
   FORM_ATTRIBUTES = %i[
+    ssn
     email
     password
     password_confirmation
     first_name
     last_name
+    company
     phone
   ].freeze
 end
