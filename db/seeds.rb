@@ -46,7 +46,7 @@ puts '3 Audit Logs have been created'
                posuere laoreet enim. Proin elementum ornare interdum. Lorem
                ipsum dolor sit amet, consectetur adipiscing elit.",
                user_id: @employee.id,
-               overtime_request: 2.5
+               daily_hours: 12.5
               )
 end
 
