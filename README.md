@@ -1,7 +1,7 @@
 # Time Tracker App
 
 ## Models
-- Post -> date:date rationale:text
+- Post -> date:date work_performed:text
 - User -> Devise
 - AdminUser -> STI
 

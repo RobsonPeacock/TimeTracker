@@ -33,7 +33,7 @@ puts '3 Audit Logs have been created'
 100.times do |post|
   Post.create!(
                date: Date.today,
-               rationale: "#{post} Lorem ipsum dolor sit amet, consectetur
+               work_performed: "#{post} Lorem ipsum dolor sit amet, consectetur
                adipiscing elit. Sed id venenatis mauris, eu posuere orci.
                Nunc fringilla lobortis metus ut ultrices. Aenean vel ipsum
                nulla. Integer maximus risus sed sapien pharetra tristique.
