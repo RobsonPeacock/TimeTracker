@@ -6,6 +6,8 @@ default: &default
 development:
   <<: *default
   database: time_tracker_development
+  host: host.docker.internal
+  username: <%= ENV['DB_USERNAME'] %>
 
 test:
   <<: *default
