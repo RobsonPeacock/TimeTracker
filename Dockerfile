@@ -1,6 +1,11 @@
 ARG RUBY_VERSION=2.7.1
 FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim AS base
-RUN apt-get update && apt-get install -y --no-install-recommends nodejs npm nano
+RUN apt-get update && apt-get install -y --no-install-recommends curl npm nano
+
+RUN curl -fsSL https://deb.nodesource.com/setup_12.x | bash - \
+    && apt-get update \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
