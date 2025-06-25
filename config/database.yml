@@ -6,6 +6,9 @@ default: &default
 development:
   <<: *default
   database: time_tracker_development
+  host: host.docker.internal
+  username: <%= ENV['APP_USER'] %>
+  password: <%= ENV['APP_USER_PASSWORD'] %>
 
 test:
   <<: *default
