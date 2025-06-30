@@ -19,7 +19,8 @@ FROM base AS build
 
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-    build-essential git libpq-dev pkg-config shared-mime-info
+    build-essential git libpq-dev pkg-config shared-mime-info \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
