@@ -1,5 +1,5 @@
 ARG RUBY_VERSION=2.7.1
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim AS base
+FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim-buster AS base
 RUN apt-get update && apt-get install -y --no-install-recommends curl npm nano
 
 RUN curl -fsSL https://deb.nodesource.com/setup_12.x | bash - \

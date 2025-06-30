@@ -1,7 +1,7 @@
 services:
   web:
     build: .
-    image: $RUBY_VERSION-slim
+    image: $RUBY_VERSION-slim-buster
     command: ./bin/rails server -p 3000 -b '0.0.0.0'
     ports:
       - 127.0.0.1:3000:3000
