@@ -1,10 +1,10 @@
 ARG RUBY_VERSION=2.7.1
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim AS base
+FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim-buster AS base
 RUN apt-get update && apt-get install -y --no-install-recommends curl npm nano
 
 RUN curl -fsSL https://deb.nodesource.com/setup_12.x | bash - \
     && apt-get update \
-    && apt-get install -y nodejs \
+    && apt-get install --no-install-recommends -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -19,7 +19,8 @@ FROM base AS build
 
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-    build-essential git libpq-dev pkg-config shared-mime-info
+    build-essential git libpq-dev pkg-config shared-mime-info \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
@@ -42,11 +43,16 @@ RUN apt-get update -qq && \
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /app /app
 
-RUN useradd rails --create-home --shell /bin/bash && \
+RUN useradd rails --no-create-home --shell /bin/bash && \
     chown -R rails:rails db log tmp
+
+COPY --from=build /app/bin/docker-entrypoint /usr/local/bin/docker-entrypoint
+RUN chmod +x /usr/local/bin/docker-entrypoint && \
+    chown rails:rails /usr/local/bin/docker-entrypoint
+    
 USER rails:rails
 
-ENTRYPOINT ["/app/bin/docker-entrypoint"]
+ENTRYPOINT ["docker-entrypoint"]
 
 EXPOSE 3000
-CMD ["./bin/rails", "server"]
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
