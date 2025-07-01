@@ -55,4 +55,4 @@ USER rails:rails
 ENTRYPOINT ["docker-entrypoint"]
 
 EXPOSE 3000
-CMD ["./bin/rails", "server"]
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
