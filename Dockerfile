@@ -43,7 +43,7 @@ RUN apt-get update -qq && \
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /app /app
 
-RUN useradd rails --create-home --shell /bin/bash && \
+RUN useradd rails --no-create-home --shell /bin/bash && \
     chown -R rails:rails db log tmp
 USER rails:rails
 
