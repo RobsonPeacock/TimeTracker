@@ -45,9 +45,14 @@ COPY --from=build /app /app
 
 RUN useradd rails --no-create-home --shell /bin/bash && \
     chown -R rails:rails db log tmp
+
+COPY --from=build /app/bin/docker-entrypoint /usr/local/bin/docker-entrypoint
+RUN chmod +x /usr/local/bin/docker-entrypoint && \
+    chown rails:rails /usr/local/bin/docker-entrypoint
+    
 USER rails:rails
 
-ENTRYPOINT ["/app/bin/docker-entrypoint"]
+ENTRYPOINT ["docker-entrypoint"]
 
 EXPOSE 3000
 CMD ["./bin/rails", "server"]
